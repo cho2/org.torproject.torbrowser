@@ -1,0 +1,56 @@
+{
+    "id" : "org.torproject.torbrowser",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "3.30",
+    "sdk" : "org.gnome.Sdk",
+    "build-options" : {
+        "cflags" : "-O2 -g",
+        "cxxflags" : "-O2 -g",
+        "env" : {
+         "V" : "1"
+        }
+    },
+    "command" : "start-tor-browser",
+    "modules" : [
+        {
+            "name" : "torbrowser",
+            "buildsystem": "simple",
+            "sources" : [
+                {
+                    "url" : "https://dist.torproject.org/torbrowser/8.0.2/tor-browser-linux64-8.0.2_en-US.tar.xz",
+                    "sha256" : "7f27ea36a6275d3a7ba5cc65b72f1793606bb7a450236c17b8708d422dbc52ed",
+                    "type" : "archive"
+                },
+                {
+                    "dest" : "",
+                    "path" : "org.torproject.torbrowser.appdata.xml",
+                    "type" : "file"
+                },
+                {
+                    "dest" : "",
+                    "path" : "org.torproject.torbrowser.desktop",
+                    "type" : "file"
+                }
+            ],
+            "build-commands": [
+               "mkdir -p /app/bin",
+               "mkdir -p /app/share/appdata",
+               "mkdir -p /app/share/applications",
+               "cp -R * /app/bin/",
+               "cp org.torproject.torbrowser.desktop /app/share/applications/org.torproject.torbrowser.desktop",
+               "cp org.torproject.torbrowser.appdata.xml /app/share/appdata/org.torproject.torbrowser.appdata.xml",
+               "mkdir -p /app/share/icons/hicolor/64x64/apps/",
+               "cp /app/bin/Browser/browser/chrome/icons/default/default128.png /app/share/icons/hicolor/64x64/apps/org.torproject.torbrowser.png"
+            ]
+        }
+    ],
+    "finish-args" : [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--filesystem=home:rw",
+        "--share=network",
+        "--socket=pulseaudio",
+        "--device=dri"
+    ]
+}

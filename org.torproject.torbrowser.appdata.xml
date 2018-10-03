@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>org.torproject.torbrowser.desktop</id>
+  <name>Tor Browser</name>
+  <metadata_license>CC0-1.0</metadata_license>
+  <developer_name>Tor Project</developer_name>
+  <url type="homepage">https://www.torproject.org</url>
+</component>
